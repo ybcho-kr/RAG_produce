@@ -101,6 +101,9 @@ def build_children(
         block_groups = _chunk_text_blocks(text_blocks, target_min_tokens, target_max_tokens)
         for order, group in enumerate(block_groups):
             text = " ".join([g[1] for g in group])
+            if token_count(text) < 20:
+                # Skip segments that are too small to be meaningful child chunks.
+                continue
             chunk_id = make_chunk_id(parent.parent_id, order, text)
             child = enrich_child_metadata(
                 doc,
