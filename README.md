@@ -26,6 +26,16 @@ python -m serve.api tests/data/sample.md "finance research"
 python examples/simple_pipeline.py
 ```
 
+### 한글 대량 문서 생성 및 인덱싱 테스트
+
+`examples/korean_bulk_ingest.py` 스크립트는 한국어로 된 합성 문서를 다량 생성해 벡터 인덱스 적재와 검색 경로를 빠르게 실험할 수 있습니다. 기본 값은 20개의 문서와 문서당 8개의 단락을 만들며, 생성 시드는 재현 가능하도록 고정할 수 있습니다.
+
+```bash
+python examples/korean_bulk_ingest.py --docs 30 --paragraphs 10 --sentences 6 --top-n 5
+```
+
+스크립트는 생성한 문서를 즉시 `SearchService`에 인덱싱한 후, 에너지·교통·의료·금융 관련 샘플 질의를 실행해 상위 결과를 출력합니다.
+
 ### BGE-m3 스텁 임베더 출력
 - **Dense**: 본문 단위 임베딩으로 1차 벡터 검색에 사용됩니다 (`index/dense.py`).
 - **Lexical weights**: 토큰별 가중치로 BM25 대체 희소 매칭에 활용됩니다 (`index/sparse.py`, `use_lexical_weights=True`).
