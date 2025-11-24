@@ -26,6 +26,12 @@ python -m serve.api tests/data/sample.md "finance research"
 python examples/simple_pipeline.py
 ```
 
+`examples/studydata_vector_test.py` 스크립트는 `examples/Studydata`에 있는 변압기 진단 관련 마크다운 자료를 모두 인덱싱한 뒤, RAG 검색을 실행합니다. 기본 예제 질의 네 개가 포함되어 있으며 `--query` 옵션으로 원하는 질문을 추가로 테스트할 수 있습니다.
+
+```bash
+PYTHONPATH=src python examples/studydata_vector_test.py
+```
+
 ### 한글 대량 문서 생성 및 인덱싱 테스트
 
 `examples/korean_bulk_ingest.py` 스크립트는 한국어로 된 합성 문서를 다량 생성해 벡터 인덱스 적재와 검색 경로를 빠르게 실험할 수 있습니다. 기본 값은 20개의 문서와 문서당 8개의 단락을 만들며, 생성 시드는 재현 가능하도록 고정할 수 있습니다.
