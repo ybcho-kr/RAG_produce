@@ -4,7 +4,7 @@
 
 ## 설치
 
-이 스택은 표준 라이브러리와 테스트용 `pytest`만 사용합니다. 필요하다면 가상환경을 만든 뒤 `requirements.txt`에 있는 테스트 의존성을 설치하세요:
+The stack uses only the Python standard library plus `pytest` for tests. Create a virtual environment if desired and install test dependencies from `requirements.txt`:
 
 ```bash
 python -m venv .venv
