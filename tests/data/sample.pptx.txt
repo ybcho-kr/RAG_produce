@@ -1,0 +1,9 @@
+--- slide ---
+Title: Slide One
+Bullet: overview of research
+Table: 1,2,3
+Narrative about finance results.
+Detailed commentary on revenue projections, engineering progress, and research validation is included to expand token coverage.
+--- slide ---
+Title: Slide Two
+Bullet: next steps

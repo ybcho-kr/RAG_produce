@@ -202,3 +202,9 @@
   - Token budget overflows during expansion: enforce configurable limits and truncation policies.
   - Dependency weight (SPLADE/FAISS): make optional extras; document install flags.
   - Schema drift: strict validators and contract tests in CI.
+
+# Assumptions & Risks
+- Assumption: Use standard-library-first implementations (hash-based embeddings, lightweight parsers) to avoid heavyweight dependencies (FAISS, Elasticsearch, HuggingFace). Reason: constrained execution environment without GPU or external services. Impact: retrieval quality lower but deterministic; still fulfills schema and pipeline contract. Alternative: swap in production-grade backends behind the same interfaces.
+- Assumption: Format-specific parsers operate on preloaded text fixtures rather than binary parsing of full PDFs/DOCs during tests. Reason: keeps tests fast/offline while preserving block schema logic. Impact: coverage focuses on structural normalization rather than OCR/layout fidelity. Alternative: integrate real parsers (pymupdf, python-docx, python-pptx) when available.
+- Risk: Simplified domain tag extraction via regex may miss nuanced tags. Mitigation: validators permit nulls; interfaces allow plugging richer NER models later.
+- Risk: Semantic chunking flag uses heuristic sentence grouping instead of ML segmentation. Mitigation: deterministic sentence splitter ensures boundary compliance; interface supports future ML-driven breaker.
