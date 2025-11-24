@@ -1,0 +1,6 @@
+Heading: Project Overview
+List: requirement one
+Table: A,B,C
+Figure: architecture diagram
+Narrative text about legal compliance and research milestones.
+Additional narrative about engineering controls, validation evidence, and repeatable processes ensures the chunk generator produces rich content.

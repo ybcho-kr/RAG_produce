@@ -1,0 +1,7 @@
+TITLE PAGE
+Introduction to Finance
+This pdf content contains multiple sentences to allow token counting. It covers revenue recognition, cost accounting, and profit optimization in a concise walkthrough.
+Table: revenue|cost|profit
+Code: print('hello')
+Figure 1: chart of growth
+Equation: $a^2 + b^2 = c^2$
