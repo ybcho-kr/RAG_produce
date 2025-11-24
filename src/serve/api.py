@@ -3,6 +3,8 @@ from typing import Dict, List
 from chunk.parent_child import chunk_document
 from ingest.loader import load_document
 from index.dense import DenseIndexer
+from index.embedder import BGEEmbedder
+from index.multivector import MultiVectorIndexer
 from index.sparse import SparseIndexer
 from metadata.enrich import enrich_child_metadata
 from rerank.cross_encoder import CrossEncoderReranker
@@ -12,9 +14,11 @@ from schema.validators import ChildChunk, DocumentBlocks, ParentChunk
 
 class SearchService:
     def __init__(self) -> None:
-        self.dense = DenseIndexer()
-        self.sparse = SparseIndexer()
-        self.retriever = HybridRetriever(self.dense, self.sparse)
+        self.embedder = BGEEmbedder()
+        self.dense = DenseIndexer(embedder=self.embedder)
+        self.sparse = SparseIndexer(embedder=self.embedder, use_lexical_weights=True)
+        self.multivector = MultiVectorIndexer(embedder=self.embedder)
+        self.retriever = HybridRetriever(self.dense, self.sparse, self.multivector)
         self.reranker = CrossEncoderReranker()
         self.children: Dict[str, ChildChunk] = {}
         self.parents: Dict[str, ParentChunk] = {}
@@ -25,8 +29,12 @@ class SearchService:
             self.parents[parent.parent_id] = parent
         for child in children:
             self.children[child.chunk_id] = child
-            self.dense.add(child.chunk_id, child.text)
-            self.sparse.add(child.chunk_id, child.text)
+            dense_vec = self.embedder.encode_dense(child.text)
+            lexical_weights = self.embedder.encode_lexical(child.text)
+            colbert_vectors = self.embedder.encode_colbert(child.text)
+            self.dense.add(child.chunk_id, child.text, vector=dense_vec)
+            self.sparse.add(child.chunk_id, child.text, lexical_weights=lexical_weights)
+            self.multivector.add(child.chunk_id, child.text, token_vectors=colbert_vectors)
 
     def load_and_ingest(self, path: str) -> None:
         doc = load_document(path)
