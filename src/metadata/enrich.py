@@ -101,7 +101,7 @@ def enrich_child_metadata(
         domain_tags=_domain_tags(text),
         page_range=parent.metadata.page_range,
     )
-    # encode flags in tags to preserve provenance
+    # 출처를 보존하기 위해 태그에 플래그를 인코딩
     if metadata.domain_tags is None:
         metadata.domain_tags = []
     metadata.domain_tags.extend(

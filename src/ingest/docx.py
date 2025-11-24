@@ -36,5 +36,5 @@ def parse_docx(content: str, path: Optional[Path] = None, doc_id: Optional[str] 
 
 
 def parse_doc(content: str, path: Optional[Path] = None, doc_id: Optional[str] = None) -> DocumentBlocks:
-    # Reuse docx logic for doc
+    # doc 형식에서도 docx 로직을 재사용
     return parse_docx(content, path, doc_id or (path.stem if path else "doc"))

@@ -77,6 +77,6 @@ def parse_markdown(content: str, path: Optional[Path] = None, doc_id: Optional[s
 
 def parse_html(content: str, path: Optional[Path] = None, doc_id: Optional[str] = None) -> DocumentBlocks:
     doc_id = doc_id or (path.stem if path else "html")
-    # Simplified: strip tags and reuse markdown logic
+    # 단순화: 태그를 제거하고 마크다운 로직을 재사용
     text = re.sub(r"<[^>]+>", lambda m: "\n" if m.group(0) in {"<p>", "</p>", "<br>"} else " ", content)
     return _parse_common(text, doc_id, "html", None)

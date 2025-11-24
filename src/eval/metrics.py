@@ -40,7 +40,7 @@ def slice_by_source(results: List[Dict], source_key: str = "source_type") -> Dic
 
 
 def faithfulness_proxy(responses: List[Dict]) -> float:
-    # Proxy: fraction of responses that include cited chunk_id in provenance
+    # 프록시: 출처에 인용된 chunk_id를 포함하는 응답의 비율
     faithful = 0
     for resp in responses:
         if resp.get("chunk_id") in resp.get("cited_chunks", [resp.get("chunk_id")]):
