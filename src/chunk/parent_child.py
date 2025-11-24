@@ -118,7 +118,7 @@ def build_children(
 
 
 def _semantic_reorder(blocks: List[Tuple[str, str]]):
-    # heuristic: longer sentences first to simulate semantic grouping
+    # 휴리스틱: 의미 기반 그룹화를 흉내 내기 위해 더 긴 문장을 우선 배치
     return sorted(blocks, key=lambda x: -len(x[1]))
 
 

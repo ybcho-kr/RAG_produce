@@ -1,12 +1,12 @@
-# Test Evaluation Instructions
+# 테스트 평가 지침
 
-The `tests/test_eval.py` suite validates the offline metric helpers. Run the tests with:
+`tests/test_eval.py` 스위트는 오프라인 지표 헬퍼를 검증합니다. 아래 명령으로 테스트를 실행하세요:
 
 ```bash
 pytest tests/test_eval.py
 ```
 
-To experiment manually, you can replicate the sample inline flow:
+직접 실험하려면 샘플 인라인 흐름을 그대로 실행할 수 있습니다:
 
 ```bash
 python - <<'PY'
