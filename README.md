@@ -4,12 +4,12 @@ This repository implements the end-to-end pipeline defined in `PLAN.md`, includi
 
 ## Installation
 
-The stack uses only the Python standard library plus `pytest` for tests. Create a virtual environment if desired and install test dependencies:
+The stack uses only the Python standard library plus `pytest` for tests. Create a virtual environment if desired and install test dependencies from `requirements.txt`:
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install pytest
+pip install -r requirements.txt
 ```
 
 ## Ingest & Index
